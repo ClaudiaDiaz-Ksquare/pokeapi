@@ -4,61 +4,41 @@ import { useState, useEffect } from 'react';
 const Fetch = ({url}) => {
 // renderizar 5 pokemones con su : numero tipo nombre y dibujo(sprite)
     
-// =======================  I D  =======================
-    const [pokemonsId, setPokemonsId] = useState();
+    // =======================  I D  =======================
+    const [pokemonsId, setPokemonsId] = useState("");
+    // =======================  N A M E  =======================
+    const [pokemonsName, setPokemonsName] = useState(0);
+    // =======================  T Y P E  =======================
+    const [pokemonsType, setPokemonsType] = useState([]);
+    // =======================  I M A G E  =======================
+    const [pokemonsImg, setPokemonsImg] = useState("");
 
     useEffect(() => {
-    const getPokemonsId = async () => {
+    const getPokemonsData = async () => {
         const res = await fetch(url);
         const pokemonData = await res.json();
         setPokemonsId(pokemonData.id)
-    }
-        getPokemonsId(url);
-        
-    }, [url])
-
- // =======================  T Y P E  =======================
-    const [pokemonsType, setPokemonsType] = useState();
-
-    useEffect(() => {
-    const getPokemonsType = async () => {
-        const res = await fetch(url);
-        const pokemonData = await res.json();
         setPokemonsType(pokemonData.types[0].type.name)
-    }
-        getPokemonsType(url);
-        
-    }, [url])
-
- // =======================  I M A G E  =======================
-    const [pokemonsImg, setPokemonsImg] = useState();
-
-    useEffect(() => {
-    const getPokemonsImg = async () => {
-        const res = await fetch(url);
-        const pokemonData = await res.json();
         setPokemonsImg(pokemonData.sprites.front_default)
+        setPokemonsName(pokemonData.forms[0].name)
     }
-        getPokemonsImg(url);
-        
+        getPokemonsData(url);
+
     }, [url])
-
-// =======================  N A M E  =======================
-//     const [pokemonsName, setPokemonsName] = useState();
-
-//     useEffect(() => {
-//     const getPokemonsName = async () => {
-//         const res = await fetch(url);
-//         const pokemonData = await res.json();
-//         setPokemonsName(pokemonData.forms[0].name)
- 
-//     }
-//         getPokemonsName(url);
-        
-//     }, [url])
 
     return (
-            [pokemonsId, "  ", pokemonsType, "    ", <img src={pokemonsImg} alt="Pokemon drawing"/>]
+            <div className='card' style={{width:'14rem'}}>
+                <div className='card-header'>
+                    <h2 className='id'>{pokemonsId}</h2>
+                    <h3 className='name'>{pokemonsName}</h3>
+                </div>
+                <div className='card-body'>
+                    <img src={pokemonsImg} alt='pokemon'/>
+                </div>
+                <div className='card-footer'>
+                    <p className='type'>{pokemonsType}</p>
+                </div>
+            </div>
     )
 
 }

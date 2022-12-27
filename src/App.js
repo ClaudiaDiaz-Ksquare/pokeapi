@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import PokemonList from './components/PokemonList';
+import Fetch from './components/Fetch';
 
 function App() {
 
@@ -16,12 +16,11 @@ function App() {
     getPokemons();
   }, [])
 
-
+  const list = pokemons.map(p => <Fetch key={p.name} url={p.url}/>)
   return (
     <div className="App">
-        <PokemonList pokemons={pokemons}/>
-        {/* {pokemons} */}
-        {/* <Fetch url='https://pokeapi.co/api/v2/pokemon/1'/> */}
+        <h1>Pokemon Cards!</h1>
+        <div className='list'>{list}</div>
     </div>
   );
 }

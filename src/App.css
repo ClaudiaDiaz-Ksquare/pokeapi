@@ -1,5 +1,29 @@
 .App {
   display: flex;
   justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+
+h1{
+  align-self: center;
+}
+
+.list{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+
+.card {
+  margin: 12rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  text-align: center;
+  border: 3px solid aquamarine;
+  background-color: aliceblue;
 }
